@@ -92,6 +92,19 @@ def load_and_clean_raw_data():
                 kmeans = KMeans(n_clusters=5, init='k-means++', random_state=42, n_init=10)
                 df['Global_Cluster'] = kmeans.fit_predict(X_cluster)
             return df
+    # If the Excel file exists, read it and prepare the dataframe
+    df = pd.read_excel(file_path)
+    # normalize column names (remove spaces) if present
+    try:
+        df.columns = df.columns.str.replace(' ', '')
+    except Exception:
+        pass
+
+    # keep only Starbucks brand rows if column exists
+    if 'Brand' in df.columns:
+        df = df[df['Brand'] == 'Starbucks'].copy()
+
+    # ensure we have coordinates before continuing
     df = df.dropna(subset=['Latitude', 'Longitude'])
     
     # Ownership simplification
