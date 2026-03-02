@@ -69,11 +69,29 @@ st.markdown("""
 def load_and_clean_raw_data():
     file_path = "/Users/apple/Desktop/Business Project/Starbucks Store Locations.xlsx"
     if not os.path.exists(file_path):
-        return pd.read_csv("country_cluster.csv") 
-    
-    df = pd.read_excel(file_path)
-    df.columns = df.columns.str.replace(' ', '')
-    df = df[df['Brand'] == 'Starbucks'].copy()
+            df = pd.read_csv("country_cluster.csv")
+            # make sure the fallback has the columns the rest of the app expects
+            required = ['Country', 'Latitude', 'Longitude', 'OwnershipType']
+            if not all(col in df.columns for col in required):
+                raise ValueError(
+                    "Fallback CSV is missing required columns. "
+                    "Please provide the original Excel dataset or a CSV containing at least "
+                    "Country, Latitude, Longitude and OwnershipType."
+                )
+            # simplified ownership label
+            df['Ownership_Label'] = df.get('Ownership_Label', df['OwnershipType'].astype(str))
+            # derive full country name if needed
+            def safe_country_name(c):
+                try: return pycountry.countries.get(alpha_2=c).name
+                except: return c
+            df['Country_Name'] = df.get('Country_Name', df['Country'].apply(safe_country_name))
+            # global cluster may already exist in CSV, but if not compute a placeholder
+            if 'Global_Cluster' not in df.columns:
+                # attempt kmeans on coords if they exist
+                X_cluster = df[['Longitude', 'Latitude']]
+                kmeans = KMeans(n_clusters=5, init='k-means++', random_state=42, n_init=10)
+                df['Global_Cluster'] = kmeans.fit_predict(X_cluster)
+            return df
     df = df.dropna(subset=['Latitude', 'Longitude'])
     
     # Ownership simplification
