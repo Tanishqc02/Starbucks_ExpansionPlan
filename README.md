@@ -5,7 +5,7 @@
 ---
 
 ## 🔗 Live Application
-**[ [CLICK HERE TO LAUNCH LIVE DASHBOARD] ](https://69a5199a-b73c-8013-9b0c-991318afc0e9-fztznsrdweh6zwashue72s.streamlit.app/)**
+**[ 🚀 VIEW LIVE DASHBOARD ](https://69a5199a-b73c-8013-9b0c-991318afc0e9-fztznsrdweh6zwashue72s.streamlit.app/)**
 
 ---
 
