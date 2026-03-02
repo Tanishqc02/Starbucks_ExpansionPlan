@@ -67,7 +67,7 @@ st.markdown("""
 # --- Data Loading & Cleaning ---
 @st.cache_data
 def load_and_clean_raw_data():
-    file_path = "/Users/apple/Desktop/Business Project/Starbucks Store Locations.xlsx"
+    file_path = "Starbucks Store Locations.xlsx"
     if not os.path.exists(file_path):
             df = pd.read_csv("country_cluster.csv")
             # make sure the fallback has the columns the rest of the app expects
