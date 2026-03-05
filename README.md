@@ -8,7 +8,7 @@
 **[ 🚀 VIEW LIVE DASHBOARD ](https://69a5199a-b73c-8013-9b0c-991318afc0e9-fztznsrdweh6zwashue72s.streamlit.app/)**
 
 ---
-
+f
 # 📌 1. Business Problem Statement
 
 Starbucks operates in more than 70 countries, but not all markets perform the same way. Some countries are highly saturated with thousands of stores, while others are still emerging with only a few locations.
@@ -162,5 +162,3 @@ When store density becomes very high, new stores may reduce revenue per store. A
 This project proves that Starbucks expansion is not random. It is **data-driven, risk-aware, revenue-focused, and strategically optimized**. By combining AI techniques with economic reasoning, this dashboard provides a scalable framework for intelligent global expansion strategy.
 
 ---
-
-**Author: Rayan**
